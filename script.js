@@ -25,8 +25,8 @@ document.getElementById('detailsForm').addEventListener('submit', function(event
             uploadedImage.src = e.target.result;
             uploadedImage.onload = function() {
                 // Position and size of the circular image
-                const circleX = 563; // Replace with exact x-coordinate
-                const circleY = 580; // Replace with exact y-coordinate
+                const circleX = 5063; // Replace with exact x-coordinate
+                const circleY = 5080; // Replace with exact y-coordinate
                 const circleRadius = 50; // Radius of the circle
 
                 // Create a circular clipping path
@@ -44,8 +44,8 @@ document.getElementById('detailsForm').addEventListener('submit', function(event
                 // Add text
                 ctx.font = '16px Arial';
                 ctx.fillStyle = 'black'; // Text color
-                const textX = 169; // Replace with exact x-coordinate for text
-                const textY = 269; // Replace with exact y-coordinate for text
+                const textX = 6069; // Replace with exact x-coordinate for text
+                const textY = 5069; // Replace with exact y-coordinate for text
 
                 ctx.fillText(`Name: ${name}`, textX, textY);
                 ctx.fillText(`University: ${university}`, textX, textY + 17);
