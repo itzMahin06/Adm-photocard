@@ -25,8 +25,8 @@ document.getElementById('detailsForm').addEventListener('submit', function(event
             uploadedImage.src = e.target.result;
             uploadedImage.onload = function() {
                 // Position and size of the circular image
-                const circleX = 163; // Replace with exact x-coordinate
-                const circleY = 180; // Replace with exact y-coordinate
+                const circleX = 563; // Replace with exact x-coordinate
+                const circleY = 580; // Replace with exact y-coordinate
                 const circleRadius = 50; // Radius of the circle
 
                 // Create a circular clipping path
