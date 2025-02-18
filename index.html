@@ -1,237 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photo Card Maker</title>
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      
-      margin: 0;
-    }
-
-    .container {
-      background-color: #ffffff;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      
-      width: 100%;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      color: #333;
-    }
-
-    .input-group {
-      margin-bottom: 1rem;
-    }
-
-    .input-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: #555;
-    }
-
-    .input-group input,
-    .input-group select {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1rem;
-      outline: none;
-    }
-
-    .input-group input:focus,
-    .input-group select:focus {
-      border-color: #0070f3;
-    }
-
-    .photo-card {
-      position: relative;
-      width: 300px;
-      height: 300px;
-      background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEim1w2h4IMAfKGIax4Bc5OX3HVF7dIbn1XZynsw0pyfoZ4PfSQz1KShbykUhnYUC7HyBV9hAMlxe_ik7zSO1gEfIjwmnrNlTfpqR60QoRjruqA11pPZFhat-pS3_GVbvUffTS7c0gJBT7thxCJzH22vPfQkN6L-7emY2zy4XfKRIW1y8XDT6f4ejXMs4jsv/s1600/www.maahin.my.id_20250218_211638_0000.png');
-      background-size: cover;
-      background-position: center;
-      border-radius: 12px;
-      margin: 1.5rem auto;
-      text-align: center;
-    }
-
-    .photo-card img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      position: absolute;
-      top: 75px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .photo-card h2 {
-      position: absolute;
-      top: 230px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 1.25rem;
-      margin: 0;
-      color: #333;
-    }
-
-    .photo-card p {
-      position: absolute;
-      font-size: 1rem;
-      color: #555;
-      margin: 0;
-    }
-
-    .photo-card .university {
-      top: 260px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .photo-card .rank {
-      top: 290px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .download-btn {
-      display: block;
-      width: 100%;
-      padding: 0.75rem;
-      background-color: #0070f3;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 1.5rem;
-    }
-
-    .download-btn:hover {
-      background-color: #005bb5;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Overlay</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Photo Card Maker</h1>
-    <div class="input-group">
-      <label for="name">Name (Max 15 Characters)</label>
-      <input type="text" id="name" maxlength="15" placeholder="Enter your name">
+    <div class="container">
+        <h1>Enter Your Details</h1>
+        <form id="detailsForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="university">University Name:</label>
+            <input type="text" id="university" name="university" required>
+
+            <label for="rank">Rank:</label>
+            <input type="text" id="rank" name="rank" required>
+
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+
+            <button type="submit">Generate Image</button>
+        </form>
+
+        <div id="preview" class="preview-container">
+            <img id="backgroundImage" src="background.jpg" alt="Background Image" style="display:none;">
+            <canvas id="canvas"></canvas>
+            <a id="downloadLink" download="output.png" style="display:none;">Download Image</a>
+        </div>
     </div>
-    <div class="input-group">
-      <label for="university">Select University</label>
-      <select id="university">
-        <option value="DU">DU</option>
-        <option value="JU">JU</option>
-        <option value="RU">RU</option>
-        <option value="CU">CU</option>
-        <option value="CoU">CoU</option>
-        <option value="JnU">JnU</option>
-        <option value="HSTU">HSTU</option>
-        <option value="GST">GST</option>
-        <option value="BUET">BUET</option>
-        <option value="CUET">CUET</option>
-        <option value="RUET">RUET</option>
-        <option value="KUET">KUET</option>
-        <option value="BUTEX">BUTEX</option>
-      </select>
-    </div>
-    <div class="input-group">
-      <label for="rank">Rank</label>
-      <input type="number" id="rank" placeholder="Enter your rank">
-    </div>
-    <div class="input-group">
-      <label for="image">Upload Image (300x300px, under 300KB)</label>
-      <input type="file" id="image" accept=".jpg, .png">
-    </div>
-  <div id="capture"> 
-    <div class="photo-card" id="photoCard">
-      <img id="previewImage" src="placeholder.jpg" alt="Uploaded Image">
-      <h2 id="displayName">Name</h2>
-      <p id="displayUniversity" class="university">University</p>
-      <p id="displayRank" class="rank">Rank</p>
-    </div>
-  </div> 
-    <button onclick="takeScreenshot()">Take Screenshot</button>
-    <button class="download-btn" onclick="downloadCard()">Download Photo Card</button>
-  </div>
 
-  <script>
-    const nameInput = document.getElementById('name');
-    const universityInput = document.getElementById('university');
-    const rankInput = document.getElementById('rank');
-    const imageInput = document.getElementById('image');
-    const previewImage = document.getElementById('previewImage');
-    const displayName = document.getElementById('displayName');
-    const displayUniversity = document.getElementById('displayUniversity');
-    const displayRank = document.getElementById('displayRank');
-
-    // Update card in real-time
-    nameInput.addEventListener('input', () => {
-      displayName.textContent = nameInput.value || 'Name';
-    });
-
-    universityInput.addEventListener('change', () => {
-      displayUniversity.textContent = universityInput.value || 'University';
-    });
-
-    rankInput.addEventListener('input', () => {
-      displayRank.textContent = rankInput.value || 'Rank';
-    });
-
-    imageInput.addEventListener('change', (event) => {
-      const file = event.target.files[0];
-      if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          previewImage.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert('Please upload a valid image (JPG or PNG, under 300KB).');
-      }
-    });
-
-    // Download card as image
-    function downloadCard() {
-      const card = document.getElementById('photoCard');
-      html2canvas(card).then((canvas) => {
-        const link = document.createElement('a');
-        link.download = 'photo-card.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-      });
-    }
-  </script>
-  <script>
-        function takeScreenshot() {
-            const element = document.getElementById("capture");
-            
-            html2canvas(element).then(canvas => {
-                let image = canvas.toDataURL("image/png");
-                let link = document.createElement("a");
-                link.href = image;
-                link.download = "screenshot.png";
-                link.click();
-            });
-        }
-    </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
