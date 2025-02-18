@@ -1,78 +1,45 @@
-document.getElementById("generateCard").addEventListener("click", function () {
-    let name = document.getElementById("name").value.trim();
-    let university = document.getElementById("university").value;
-    let rank = document.getElementById("rank").value.trim();
-    let imageFile = document.getElementById("imageUpload").files[0];
+document.getElementById('detailsForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-    // Input Validations
-    if (!name || !rank || !imageFile) {
-        alert("Please fill all fields and upload an image.");
-        return;
-    }
-    if (isNaN(rank) || rank < 1) {
-        alert("Rank must be a valid number.");
-        return;
-    }
-    if (imageFile.size > 300 * 1024) {
-        alert("Image must be under 300KB.");
-        return;
-    }
+    const name = document.getElementById('name').value;
+    const university = document.getElementById('university').value;
+    const rank = document.getElementById('rank').value;
+    const imageFile = document.getElementById('image').files[0];
 
-    let reader = new FileReader();
-    reader.readAsDataURL(imageFile);
-    reader.onload = function (e) {
-        let img = new Image();
-        img.src = e.target.result;
-        img.onload = function () {
-            createPhotoCard(img, name, university, rank);
+    const backgroundImage = document.getElementById('backgroundImage');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+            canvas.width = backgroundImage.width;
+            canvas.height = backgroundImage.height;
+
+            // Draw the background image
+            ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
+            // Draw the uploaded image
+            const uploadedImage = new Image();
+            uploadedImage.src = e.target.result;
+            uploadedImage.onload = function() {
+                ctx.drawImage(uploadedImage, 50, 50, 100, 100); // Adjust position and size as needed
+
+                // Add text
+                ctx.font = '20px Arial';
+                ctx.fillStyle = 'white';
+                ctx.fillText(`Name: ${name}`, 50, 200);
+                ctx.fillText(`University: ${university}`, 50, 230);
+                ctx.fillText(`Rank: ${rank}`, 50, 260);
+
+                // Show download link
+                const downloadLink = document.getElementById('downloadLink');
+                downloadLink.href = canvas.toDataURL('image/png');
+                downloadLink.style.display = 'block';
+            };
         };
+        img.src = backgroundImage.src;
     };
-});
-
-// Function to create the photo card
-function createPhotoCard(img, name, university, rank) {
-    let canvas = document.getElementById("photoCardCanvas");
-    let ctx = canvas.getContext("2d");
-
-    // Set canvas size to match uploaded template
-    canvas.width = 1080;
-    canvas.height = 1080;
-
-    let bgImage = new Image();
-    bgImage.src = "photo_card_template.jpg";  // Replace with your template image URL
-    bgImage.onload = function () {
-        ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
-
-        // Draw Circular Cropped Image
-        let circleX = 400, circleY = 400, radius = 150;
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(circleX, circleY, radius, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.clip();
-        ctx.drawImage(img, circleX - radius, circleY - radius, radius * 2, radius * 2);
-        ctx.restore();
-
-        // Add Name
-        ctx.fillStyle = "black";
-        ctx.font = "bold 50px Arial";
-        ctx.textAlign = "center";
-        ctx.fillText(name, canvas.width / 2, 700);
-
-        // Add University & Rank
-        ctx.font = "bold 40px Arial";
-        ctx.fillText(university, canvas.width / 2, 770);
-        ctx.fillText("Rank: " + rank, canvas.width / 2, 840);
-
-        document.getElementById("cardContainer").style.display = "block";
-    };
-}
-
-// Download Function
-document.getElementById("downloadCard").addEventListener("click", function () {
-    let canvas = document.getElementById("photoCardCanvas");
-    let link = document.createElement("a");
-    link.download = "photo_card.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
+    reader.readAsDataURL(imageFile);
 });
