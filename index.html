@@ -160,12 +160,15 @@
       <label for="image">Upload Image (300x300px, under 300KB)</label>
       <input type="file" id="image" accept=".jpg, .png">
     </div>
+  <div id="capture"> 
     <div class="photo-card" id="photoCard">
       <img id="previewImage" src="placeholder.jpg" alt="Uploaded Image">
       <h2 id="displayName">Name</h2>
       <p id="displayUniversity" class="university">University</p>
       <p id="displayRank" class="rank">Rank</p>
     </div>
+  </div> 
+    <button onclick="takeScreenshot()">Take Screenshot</button>
     <button class="download-btn" onclick="downloadCard()">Download Photo Card</button>
   </div>
 
@@ -216,6 +219,19 @@
       });
     }
   </script>
+  <script>
+        function takeScreenshot() {
+            const element = document.getElementById("capture");
+            
+            html2canvas(element).then(canvas => {
+                let image = canvas.toDataURL("image/png");
+                let link = document.createElement("a");
+                link.href = image;
+                link.download = "screenshot.png";
+                link.click();
+            });
+        }
+    </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>
