@@ -20,18 +20,36 @@ document.getElementById('detailsForm').addEventListener('submit', function(event
             // Draw the background image
             ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
-            // Draw the uploaded image
+            // Draw the uploaded image as a circle
             const uploadedImage = new Image();
             uploadedImage.src = e.target.result;
             uploadedImage.onload = function() {
-                ctx.drawImage(uploadedImage, 50, 50, 100, 100); // Adjust position and size as needed
+                // Position and size of the circular image
+                const circleX = 100; // Replace with exact x-coordinate
+                const circleY = 100; // Replace with exact y-coordinate
+                const circleRadius = 50; // Radius of the circle
+
+                // Create a circular clipping path
+                ctx.beginPath();
+                ctx.arc(circleX + circleRadius, circleY + circleRadius, circleRadius, 0, Math.PI * 2, true);
+                ctx.closePath();
+                ctx.clip();
+
+                // Draw the uploaded image within the circular clipping path
+                ctx.drawImage(uploadedImage, circleX, circleY, circleRadius * 2, circleRadius * 2);
+
+                // Reset clipping path
+                ctx.restore();
 
                 // Add text
                 ctx.font = '20px Arial';
-                ctx.fillStyle = 'white';
-                ctx.fillText(`Name: ${name}`, 50, 200);
-                ctx.fillText(`University: ${university}`, 50, 230);
-                ctx.fillText(`Rank: ${rank}`, 50, 260);
+                ctx.fillStyle = 'black'; // Text color
+                const textX = 200; // Replace with exact x-coordinate for text
+                const textY = 250; // Replace with exact y-coordinate for text
+
+                ctx.fillText(`Name: ${name}`, textX, textY);
+                ctx.fillText(`University: ${university}`, textX, textY + 30);
+                ctx.fillText(`Rank: ${rank}`, textX, textY + 60);
 
                 // Show download link
                 const downloadLink = document.getElementById('downloadLink');
