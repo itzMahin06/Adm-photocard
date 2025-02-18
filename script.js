@@ -42,14 +42,14 @@ document.getElementById('detailsForm').addEventListener('submit', function(event
                 ctx.restore();
 
                 // Add text
-                ctx.font = '20px Arial';
+                ctx.font = '16px Arial';
                 ctx.fillStyle = 'black'; // Text color
-                const textX = 200; // Replace with exact x-coordinate for text
-                const textY = 250; // Replace with exact y-coordinate for text
+                const textX = 169; // Replace with exact x-coordinate for text
+                const textY = 269; // Replace with exact y-coordinate for text
 
                 ctx.fillText(`Name: ${name}`, textX, textY);
-                ctx.fillText(`University: ${university}`, textX, textY + 30);
-                ctx.fillText(`Rank: ${rank}`, textX, textY + 60);
+                ctx.fillText(`University: ${university}`, textX, textY + 17);
+                ctx.fillText(`Rank: ${rank}`, textX, textY + 38);
 
                 // Show download link
                 const downloadLink = document.getElementById('downloadLink');
