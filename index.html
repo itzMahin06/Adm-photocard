@@ -6,8 +6,8 @@
   <title>Photo Card Maker</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f5f5;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -16,85 +16,114 @@
     }
 
     .container {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: 400px;
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
       text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #333;
     }
 
     .input-group {
-      margin-bottom: 15px;
-      text-align: left;
+      margin-bottom: 1rem;
     }
 
     .input-group label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #555;
     }
 
-    .input-group input {
+    .input-group input,
+    .input-group select {
       width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
     }
 
-    .input-group input[type="file"] {
-      padding: 5px;
+    .input-group input:focus,
+    .input-group select:focus {
+      border-color: #0070f3;
     }
 
-    .message {
-      color: red;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-
-    .preview {
-      margin-top: 20px;
+    .photo-card {
       position: relative;
-      display: none;
-    }
-
-    .preview img {
       width: 300px;
-      height: 300px;
-      border-radius: 10px;
+      height: 400px;
+      background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEim1w2h4IMAfKGIax4Bc5OX3HVF7dIbn1XZynsw0pyfoZ4PfSQz1KShbykUhnYUC7HyBV9hAMlxe_ik7zSO1gEfIjwmnrNlTfpqR60QoRjruqA11pPZFhat-pS3_GVbvUffTS7c0gJBT7thxCJzH22vPfQkN6L-7emY2zy4XfKRIW1y8XDT6f4ejXMs4jsv/s1600/www.maahin.my.id_20250218_211638_0000.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
+      margin: 1.5rem auto;
+      text-align: center;
     }
 
-    .preview .text-overlay {
+    .photo-card img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
       position: absolute;
-      top: 20px;
-      left: 20px;
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    .preview .text-overlay h2 {
+    .photo-card h2 {
+      position: absolute;
+      top: 220px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.25rem;
       margin: 0;
-      font-size: 24px;
+      color: #333;
     }
 
-    .preview .text-overlay p {
-      margin: 5px 0;
-      font-size: 18px;
+    .photo-card p {
+      position: absolute;
+      font-size: 1rem;
+      color: #555;
+      margin: 0;
+    }
+
+    .photo-card .university {
+      top: 260px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .photo-card .rank {
+      top: 290px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .download-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #0070f3;
+      color: #fff;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-size: 1rem;
       cursor: pointer;
+      margin-top: 1.5rem;
     }
 
     .download-btn:hover {
-      background-color: #0056b3;
+      background-color: #005bb5;
     }
   </style>
 </head>
@@ -102,114 +131,91 @@
   <div class="container">
     <h1>Photo Card Maker</h1>
     <div class="input-group">
-      <label for="name">Name (Max 15 characters):</label>
+      <label for="name">Name (Max 15 Characters)</label>
       <input type="text" id="name" maxlength="15" placeholder="Enter your name">
     </div>
     <div class="input-group">
-      <label for="university">University Short Form:</label>
-      <input type="text" id="university" placeholder="Enter university short form">
+      <label for="university">Select University</label>
+      <select id="university">
+        <option value="DU">DU</option>
+        <option value="JU">JU</option>
+        <option value="RU">RU</option>
+        <option value="CU">CU</option>
+        <option value="CoU">CoU</option>
+        <option value="JnU">JnU</option>
+        <option value="HSTU">HSTU</option>
+        <option value="GST">GST</option>
+        <option value="BUET">BUET</option>
+        <option value="CUET">CUET</option>
+        <option value="RUET">RUET</option>
+        <option value="KUET">KUET</option>
+        <option value="BUTEX">BUTEX</option>
+      </select>
     </div>
     <div class="input-group">
-      <label for="rank">Rank (Number only):</label>
+      <label for="rank">Rank</label>
       <input type="number" id="rank" placeholder="Enter your rank">
     </div>
     <div class="input-group">
-      <label for="image">Upload Image (300x300px, under 300KB):</label>
-      <input type="file" id="image" accept="image/jpeg, image/png">
+      <label for="image">Upload Image (300x300px, under 300KB)</label>
+      <input type="file" id="image" accept=".jpg, .png">
     </div>
-    <div class="message" id="message"></div>
-    <button id="generate-btn">Generate Photo Card</button>
-
-    <div class="preview" id="preview">
-      <img id="preview-image" src="" alt="Preview Image">
-      <div class="text-overlay">
-        <h2 id="preview-name"></h2>
-        <p id="preview-university"></p>
-        <p id="preview-rank"></p>
-      </div>
+    <div class="photo-card" id="photoCard">
+      <img id="previewImage" src="placeholder.jpg" alt="Uploaded Image">
+      <h2 id="displayName">Name</h2>
+      <p id="displayUniversity" class="university">University</p>
+      <p id="displayRank" class="rank">Rank</p>
     </div>
-    <button class="download-btn" id="download-btn" style="display: none;">Download Photo Card</button>
+    <button class="download-btn" onclick="downloadCard()">Download Photo Card</button>
   </div>
 
   <script>
-    const backgroundImageUrl = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEim1w2h4IMAfKGIax4Bc5OX3HVF7dIbn1XZynsw0pyfoZ4PfSQz1KShbykUhnYUC7HyBV9hAMlxe_ik7zSO1gEfIjwmnrNlTfpqR60QoRjruqA11pPZFhat-pS3_GVbvUffTS7c0gJBT7thxCJzH22vPfQkN6L-7emY2zy4XfKRIW1y8XDT6f4ejXMs4jsv/s1600/www.maahin.my.id_20250218_211638_0000.png";
+    const nameInput = document.getElementById('name');
+    const universityInput = document.getElementById('university');
+    const rankInput = document.getElementById('rank');
+    const imageInput = document.getElementById('image');
+    const previewImage = document.getElementById('previewImage');
+    const displayName = document.getElementById('displayName');
+    const displayUniversity = document.getElementById('displayUniversity');
+    const displayRank = document.getElementById('displayRank');
 
-    document.getElementById('generate-btn').addEventListener('click', function () {
-      const name = document.getElementById('name').value.trim();
-      const university = document.getElementById('university').value.trim();
-      const rank = document.getElementById('rank').value.trim();
-      const imageFile = document.getElementById('image').files[0];
-
-      if (!name || !university || !rank || !imageFile) {
-        alert("Please fill all fields and upload an image.");
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const img = new Image();
-        img.src = e.target.result;
-
-        img.onload = function () {
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
-
-          // Crop image to 300x300px
-          if (img.width !== 300 || img.height !== 300) {
-            canvas.width = 300;
-            canvas.height = 300;
-            ctx.drawImage(img, 0, 0, 300, 300);
-            document.getElementById('message').textContent = "Image cropped to 300x300px.";
-            setTimeout(() => {
-              document.getElementById('message').textContent = "";
-            }, 3000);
-          } else {
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
-          }
-
-          // Draw background image
-          const backgroundImg = new Image();
-          backgroundImg.src = backgroundImageUrl;
-          backgroundImg.onload = function () {
-            const finalCanvas = document.createElement('canvas');
-            finalCanvas.width = 300;
-            finalCanvas.height = 300;
-            const finalCtx = finalCanvas.getContext('2d');
-
-            // Draw background
-            finalCtx.drawImage(backgroundImg, 0, 0, 300, 300);
-
-            // Draw cropped image
-            finalCtx.drawImage(canvas, 0, 0, 300, 300);
-
-            // Add text
-            finalCtx.font = "24px Arial";
-            finalCtx.fillStyle = "white";
-            finalCtx.fillText(`Name: ${name}`, 20, 40);
-            finalCtx.fillText(`University: ${university}`, 20, 80);
-            finalCtx.fillText(`Rank: ${rank}`, 20, 120);
-
-            // Display preview
-            const previewImage = document.getElementById('preview-image');
-            previewImage.src = finalCanvas.toDataURL();
-            document.getElementById('preview').style.display = "block";
-
-            // Enable download button
-            const downloadBtn = document.getElementById('download-btn');
-            downloadBtn.style.display = "block";
-            downloadBtn.onclick = function () {
-              const link = document.createElement('a');
-              link.download = 'photo-card.png';
-              link.href = finalCanvas.toDataURL();
-              link.click();
-            };
-          };
-        };
-      };
-      reader.readAsDataURL(imageFile);
+    // Update card in real-time
+    nameInput.addEventListener('input', () => {
+      displayName.textContent = nameInput.value || 'Name';
     });
+
+    universityInput.addEventListener('change', () => {
+      displayUniversity.textContent = universityInput.value || 'University';
+    });
+
+    rankInput.addEventListener('input', () => {
+      displayRank.textContent = rankInput.value || 'Rank';
+    });
+
+    imageInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImage.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Please upload a valid image (JPG or PNG, under 300KB).');
+      }
+    });
+
+    // Download card as image
+    function downloadCard() {
+      const card = document.getElementById('photoCard');
+      html2canvas(card).then((canvas) => {
+        const link = document.createElement('a');
+        link.download = 'photo-card.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>
