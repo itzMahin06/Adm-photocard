@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Card Maker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body> 
+    <div class="container">
+        <h2> এডমিশন নিয়ে খেলছি </h2>
+        <input type="text" id="name" placeholder="তোমার নাম লিখো (অবশ্যই বাংলায়, সর্বোচ্চ ২০ ক্যারেক্টার)" maxlength="20">
+        <select id="university">
+            <option value="ঢাকা বিশ্ববিদ্যালয়">ঢাবি</option>
+            <option value="জাহাঙ্গীরনগর বিশ্ববিদ্যালয়">জাবি</option>
+            <option value="রাজশাহী বিশ্ববিদ্যালয় ">রাবি</option>
+            <option value="চট্টগ্রাম বিশ্ববিদ্যালয় ">চবি</option>
+             <option value="কুমিল্লা বিশ্ববিদ্যালয়">কুবি</option>
+<option value="খুলনা বিশ্ববিদ্যালয়">খুবি</option>
+
+            <option value="জগন্নাথ বিশ্ববিদ্যালয় ">জবি</option>
+            <option value="হাজী মোহাম্মদ দানেশ বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়">হাবিপ্রবি</option>
+            <option value="গুচ্ছ">গুচ্ছ</option>
+<option value="কৃষি গুচ্ছ">কৃষি গুচ্ছ</option>
+            <option value="বাংলাদেশ প্রকৌশল বিশ্ববিদ্যালয় ">বুয়েট</option>
+            <option value="চট্টগ্রাম প্রকৌশল বিশ্ববিদ্যালয় ">চুয়েট</option>
+            <option value="রাজশাহী প্রকৌশল বিশ্ববিদ্যালয় ">রুয়েট</option>
+            <option value="খুলনা প্রকৌশল বিশ্ববিদ্যালয় ">কুয়েট</option>
+            <option value="বাংলাদেশ টেক্সটাইল বিশ্ববিদ্যালয়">বুটেক্স</option>
+        </select>
+        <input type="text" id="rank" placeholder="মেরিট পজিশন (অবশ্যই বাংলায়)">
+        <input type="file" id="imageUpload" accept="image/png, image/jpeg">
+        <button onclick="generateCard()">তৈরি করুন</button>
+        <button id="downloadBtn" style="display:none;" onclick="downloadImage()">ডাউনলোড করুন</button>
+
+        <div class="preview">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+    <script src="sv2.js"></script>
+</body>
+</html>
