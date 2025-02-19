@@ -27,11 +27,11 @@ document.getElementById('detailsForm').addEventListener('submit', function(event
                 ctx.drawImage(uploadedImage, 50, 50, 100, 100); // Adjust position and size as needed
 
                 // Add text
-                ctx.font = '20px Arial';
-                ctx.fillStyle = 'white';
-                ctx.fillText(`Name: ${name}`, 50, 200);
-                ctx.fillText(`University: ${university}`, 50, 230);
-                ctx.fillText(`Rank: ${rank}`, 50, 260);
+                ctx.font = '48px Arial';
+                ctx.fillStyle = 'black';
+                ctx.fillText(`Name: ${name}`, 800, 920);
+                ctx.fillText(`University: ${university}`, 800, 940);
+                ctx.fillText(`Rank: ${rank}`, 800, 950);
 
                 // Show download link
                 const downloadLink = document.getElementById('downloadLink');
