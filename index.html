@@ -1,10 +1,84 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Overlay</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .preview-container {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        canvas {
+            max-width: 100%;
+            border: 1px solid #ccc;
+        }
+
+        #downloadLink {
+            display: block;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        #downloadLink:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -26,12 +100,77 @@
         </form>
 
         <div id="preview" class="preview-container">
-            <img id="backgroundImage" src="background.jpg" alt="Background Image" style="display:none;">
+            <img id="backgroundImage" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiUye2WR-jGVga5anSNOCCPeLkR5Uxko0CCbhj8m8M6o0PdhlussTA4hOcIEpYjTE0pe9Z4vzy6cGYRnc3dm0IIwZxkSRgnPIk6kMXqEM7BNrty22UkTFunzMx-YImE8QxLK1Y4z-SsO7eMHBW3rZ3B87mj5Jf4dGR3mVAueoEozRwa_5Y-z8CZb6gmKmFu/s1600/background.jpg" alt="Background Image" style="display:none;">
             <canvas id="canvas"></canvas>
             <a id="downloadLink" download="output.png" style="display:none;">Download Image</a>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('detailsForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const university = document.getElementById('university').value;
+            const rank = document.getElementById('rank').value;
+            const imageFile = document.getElementById('image').files[0];
+
+            const backgroundImage = document.getElementById('backgroundImage');
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    canvas.width = backgroundImage.width;
+                    canvas.height = backgroundImage.height;
+
+                    // Draw the background image
+                    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
+                    // Draw the uploaded image as a circle
+                    const uploadedImage = new Image();
+                    uploadedImage.src = e.target.result;
+                    uploadedImage.onload = function() {
+                        // Position and size of the circular image
+                        const circleX = 805; // X-coordinate for the circle (center)
+                        const circleY = 870; // Y-coordinate for the circle (center)
+                        const circleRadius = 340; // Radius of the circle
+
+                        // Create a circular clipping path
+                        ctx.beginPath();
+                        ctx.arc(circleX, circleY, circleRadius, 0, Math.PI * 2, true);
+                        ctx.closePath();
+                        ctx.clip();
+
+                        // Draw the uploaded image within the circular clipping path
+                        ctx.drawImage(uploadedImage, circleX - circleRadius, circleY - circleRadius, circleRadius * 2, circleRadius * 2);
+
+                        // Reset clipping path
+                        ctx.restore();
+
+                        // Add text
+                        ctx.font = '20px Arial';
+                        ctx.fillStyle = 'black'; // Text color
+
+                        // Name
+                        ctx.fillText(`Name: ${name}`, 50, 250); // Adjust coordinates as needed
+                        // University
+                        ctx.fillText(`University: ${university}`, 50, 280); // Adjust coordinates as needed
+                        // Rank
+                        ctx.fillText(`Rank: ${rank}`, 50, 310); // Adjust coordinates as needed
+
+                        // Show download link
+                        const downloadLink = document.getElementById('downloadLink');
+                        downloadLink.href = canvas.toDataURL('image/png');
+                        downloadLink.style.display = 'block';
+                    };
+                };
+                img.src = backgroundImage.src;
+            };
+            reader.readAsDataURL(imageFile);
+        });
+    </script>
 </body>
 </html>
