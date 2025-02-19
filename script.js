@@ -41,20 +41,26 @@ function generateCard() {
                 ctx.drawImage(userImg, x, y, size, size);
                 ctx.restore();
 
-                // Add text (Modify font size as needed)
+                // Add text (Centered Alignment)
 ctx.fillStyle = "#433268";
- 
+ctx.textAlign = "center"; // Center alignment
+
+const centerX = canvas.width / 2; // Get the center X position
+const nameY = 1330; // Adjust Y for proper positioning
+const universityY = 1430;
+const rankY = 1530;
+
 // Name (Larger & Bold)
-ctx.font = "bold 100px Kalpurush";  // Increased size
-ctx.fillText(name, 410, 1330);
+ctx.font = "bold 100px Kalpurush";
+ctx.fillText(name, centerX, nameY);
 
 // University Name (Medium Size)
-ctx.font = "bold 80px Kalpurush";  // Adjusted size
-ctx.fillText(university, 580, 1430);
+ctx.font = "bold 80px Kalpurush";
+ctx.fillText(university, centerX, universityY);
 
 // Rank (Smaller)
-ctx.font = "bold 78px Kalpurush";  // Adjusted size
-ctx.fillText("মেরিট পজিশনঃ " + rank, 580, 1530);
+ctx.font = "bold 78px Kalpurush";
+ctx.fillText("মেরিট পজিশনঃ " + rank, centerX, rankY);
 
                 // Show download button
                 document.getElementById("downloadBtn").style.display = "block";
