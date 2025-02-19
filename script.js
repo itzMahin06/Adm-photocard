@@ -50,11 +50,11 @@ ctx.fillText(name, 410, 1330);
 
 // University Name (Medium Size)
 ctx.font = "bold 80px Kalpurush";  // Adjusted size
-ctx.fillText(university, 600, 1430);
+ctx.fillText(university, 580, 1430);
 
 // Rank (Smaller)
 ctx.font = "bold 78px Kalpurush";  // Adjusted size
-ctx.fillText("মেরিট পজিশনঃ " + rank, 600, 1530);
+ctx.fillText("মেরিট পজিশনঃ " + rank, 580, 1530);
 
                 // Show download button
                 document.getElementById("downloadBtn").style.display = "block";
