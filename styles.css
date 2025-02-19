@@ -1,46 +1,105 @@
 @import url('https://fonts.maateen.me/kalpurush/font.css');
-body {
-    font-family: Kalpurush, sans-serif;
+/* General Styles */
+ body {
+    font-family: 'Kalpurush', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #0a0a0a;
+    color: white;
+    margin: 0;
 }
 
+/* Container */
 .container {
     text-align: center;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background: #111;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    width: 350px;
 }
 
-input, select, button {
-    display: block;
-    width: 90%;
-    margin: 10px auto;
-    padding: 10px;
+/* Heading */
+h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Input Fields */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
     font-size: 16px;
+    font-family: 'Kalpurush', sans-serif;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
-button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
+input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+select {
+    appearance: none;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
+/* Input Hover & Focus Effects */
+input:focus, select:focus {
+    border-color: #0070f3;
+    box-shadow: 0px 0px 8px rgba(0, 112, 243, 0.5);
 }
 
+/* File Upload */
+input[type="file"] {
+    cursor: pointer;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #0070f3, #00d8ff);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #0056b3, #00bfff);
+}
+
+/* Download Button */
+#downloadBtn {
+    background: linear-gradient(90deg, #ff007a, #ff4da6);
+    display: none;
+}
+
+#downloadBtn:hover {
+    background: linear-gradient(90deg, #cc0066, #ff3385);
+}
+
+/* Canvas Preview */
 .preview {
     margin-top: 20px;
 }
 
 canvas {
-    width: 300px;
-    height: 300px;
-    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
