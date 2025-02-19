@@ -9,26 +9,27 @@
 <body>
     <div class="container">
         <h2> এডমিশন নিয়ে খেলছি </h2>
-        <input type="text" id="name" placeholder="তোমার নাম লিখো (Max 15 chars)" maxlength="15">
+        <input type="text" id="name" placeholder="তোমার নাম লিখো (সর্বোচ্চ ২০ ক্যারেক্টার)" maxlength="20">
         <select id="university">
-            <option value="Dhaka University">DU</option>
-            <option value="Jahangirnagar University">JU</option>
-            <option value="Rajshahi University">RU</option>
-            <option value="Chittagong University">CU</option>
-            <option value="Comilla University">CoU</option>
-            <option value="Jogonnath University">JnU</option>
-            <option value="HSTU">HSTU</option>
-            <option value="GST">GST</option>
-            <option value="BUET">BUET</option>
-            <option value="CUET">CUET</option>
-            <option value="RUET">RUET</option>
-            <option value="KUET">KUET</option>
-            <option value="BUTEX">BUTEX</option>
+            <option value="ঢাকা বিশ্ববিদ্যালয়">ঢাবি</option>
+            <option value="জাহাঙ্গীরনগর বিশ্ববিদ্যালয়">জাবি</option>
+            <option value="রাজশাহী বিশ্ববিদ্যালয় ">রাবি</option>
+            <option value="চট্টগ্রাম বিশ্ববিদ্যালয় ">চবি</option>
+            <option value="কুমিল্লা বিশ্ববিদ্যালয়">কুবি</option>
+            <option value="জগন্নাথ বিশ্ববিদ্যালয় ">জবি</option>
+            <option value="হাজী মোহাম্মদ দানেশ বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়">হাবিপ্রবি</option>
+            <option value="গুচ্ছ">গুচ্ছ</option>
+<option value="কৃষি গুচ্ছ">কৃষি গুচ্ছ</option>
+            <option value="বাংলাদেশ প্রকৌশল বিশ্ববিদ্যালয় ">বুয়েট</option>
+            <option value="চট্টগ্রাম প্রকৌশল বিশ্ববিদ্যালয় ">চুয়েট</option>
+            <option value="রাজশাহী প্রকৌশল বিশ্ববিদ্যালয় ">রুয়েট</option>
+            <option value="খুলনা প্রকৌশল বিশ্ববিদ্যালয় ">কুয়েট</option>
+            <option value="বাংলাদেশ টেক্সটাইল বিশ্ববিদ্যালয়">বুটেক্স</option>
         </select>
         <input type="number" id="rank" placeholder="রেংক লিখো">
         <input type="file" id="imageUpload" accept="image/png, image/jpeg">
-        <button onclick="generateCard()">Generate Card</button>
-        <button id="downloadBtn" style="display:none;" onclick="downloadImage()">Download</button>
+        <button onclick="generateCard()">তৈরি করুন</button>
+        <button id="downloadBtn" style="display:none;" onclick="downloadImage()">ডাউনলোড করুন</button>
 
         <div class="preview">
             <canvas id="canvas"></canvas>
