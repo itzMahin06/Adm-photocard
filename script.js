@@ -1,45 +1,65 @@
-document.getElementById('detailsForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+const bgImageSrc = "background.jpg"; // Replace with your uploaded background image file name
 
-    const name = document.getElementById('name').value;
-    const university = document.getElementById('university').value;
-    const rank = document.getElementById('rank').value;
-    const imageFile = document.getElementById('image').files[0];
+function generateCard() {
+    const name = document.getElementById("name").value;
+    const university = document.getElementById("university").value;
+    const rank = document.getElementById("rank").value;
+    const imageUpload = document.getElementById("imageUpload").files[0];
 
-    const backgroundImage = document.getElementById('backgroundImage');
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+    if (!name || !rank || !imageUpload) {
+        alert("Please fill all fields and upload an image.");
+        return;
+    }
 
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const img = new Image();
-        img.onload = function() {
-            canvas.width = backgroundImage.width;
-            canvas.height = backgroundImage.height;
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const bgImage = new Image();
+    bgImage.src = bgImageSrc;
 
-            // Draw the background image
-            ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+    bgImage.onload = function () {
+        canvas.width = bgImage.width;
+        canvas.height = bgImage.height;
 
-            // Draw the uploaded image
-            const uploadedImage = new Image();
-            uploadedImage.src = e.target.result;
-            uploadedImage.onload = function() {
-                ctx.drawImage(uploadedImage, 805, 870, 300, 300); // Adjust position and size as needed
+        ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
+
+        // Load user image and crop into a circle
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const userImg = new Image();
+            userImg.src = e.target.result;
+            userImg.onload = function () {
+                const size = 678;
+                const x = 463;
+                const y = 530;
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(x + size / 2, y + size / 2, size / 2, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.clip();
+
+                ctx.drawImage(userImg, x, y, size, size);
+                ctx.restore();
 
                 // Add text
-                ctx.font = '48px Arial';
-                ctx.fillStyle = 'black';
-                ctx.fillText(`Name: ${name}`, 800, 920);
-                ctx.fillText(`University: ${university}`, 800, 940);
-                ctx.fillText(`Rank: ${rank}`, 800, 950);
+                ctx.fillStyle = "#000000";
+                ctx.font = "bold 78px Kalpurush";
+                ctx.fillText(name, 500, 1330);
+                ctx.fillText(university, 500, 1430);
+                ctx.fillText("Rank: " + rank, 500, 1530);
 
-                // Show download link
-                const downloadLink = document.getElementById('downloadLink');
-                downloadLink.href = canvas.toDataURL('image/png');
-                downloadLink.style.display = 'block';
+                // Show download button
+                document.getElementById("downloadBtn").style.display = "block";
             };
         };
-        img.src = backgroundImage.src;
+        reader.readAsDataURL(imageUpload);
     };
-    reader.readAsDataURL(imageFile);
-});
+}
+
+function downloadImage() {
+    const canvas = document.getElementById("canvas");
+    const link = document.createElement("a");
+    link.download = "photo-card.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+}
