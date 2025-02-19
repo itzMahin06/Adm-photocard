@@ -70,6 +70,7 @@ button {
     padding: 12px;
     margin-top: 15px;
     font-size: 16px;
+ font-family: 'Kalpurush', sans-serif;
     border-radius: 8px;
     background: linear-gradient(90deg, #0070f3, #00d8ff);
     color: white;
