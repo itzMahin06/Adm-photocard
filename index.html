@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Overlay</title>
+    <title>Photo Card Maker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Enter Your Details</h1>
-        <form id="detailsForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+        <h2> এডমিশন নিয়ে খেলছি </h2>
+        <input type="text" id="name" placeholder="তোমার নাম লিখো (Max 15 chars)" maxlength="15">
+        <select id="university">
+            <option value="Dhaka University">DU</option>
+            <option value="Jahangirnagar University">JU</option>
+            <option value="Rajshahi University">RU</option>
+            <option value="Chittagong University">CU</option>
+            <option value="Comilla University">CoU</option>
+            <option value="Jogonnath University">JnU</option>
+            <option value="HSTU">HSTU</option>
+            <option value="GST">GST</option>
+            <option value="BUET">BUET</option>
+            <option value="CUET">CUET</option>
+            <option value="RUET">RUET</option>
+            <option value="KUET">KUET</option>
+            <option value="BUTEX">BUTEX</option>
+        </select>
+        <input type="number" id="rank" placeholder="রেংক লিখো">
+        <input type="file" id="imageUpload" accept="image/png, image/jpeg">
+        <button onclick="generateCard()">Generate Card</button>
+        <button id="downloadBtn" style="display:none;" onclick="downloadImage()">Download</button>
 
-            <label for="university">University Name:</label>
-            <input type="text" id="university" name="university" required>
-
-            <label for="rank">Rank:</label>
-            <input type="text" id="rank" name="rank" required>
-
-            <label for="image">Upload Image:</label>
-            <input type="file" id="image" name="image" accept="image/*" required>
-
-            <button type="submit">Generate Image</button>
-        </form>
-
-        <div id="preview" class="preview-container">
-            <img id="backgroundImage" src="background.jpg" alt="Background Image" style="display:none;">
+        <div class="preview">
             <canvas id="canvas"></canvas>
-            <a id="downloadLink" download="output.png" style="display:none;">Download Image</a>
         </div>
     </div>
 
