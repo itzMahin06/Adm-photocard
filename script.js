@@ -46,7 +46,7 @@ function generateCard() {
                 ctx.font = "bold 78px Kalpurush";
                 ctx.fillText(name, 500, 1330);
                 ctx.fillText(university, 500, 1430);
-                ctx.fillText("Rank: " + rank, 500, 1530);
+                ctx.fillText("মেরিট পজিশনঃ " + rank, 500, 1530);
 
                 // Show download button
                 document.getElementById("downloadBtn").style.display = "block";
@@ -55,7 +55,7 @@ function generateCard() {
         reader.readAsDataURL(imageUpload);
     };
 }
-
+ 
 function downloadImage() {
     const canvas = document.getElementById("canvas");
     const link = document.createElement("a");
