@@ -24,7 +24,7 @@ document.getElementById('detailsForm').addEventListener('submit', function(event
             const uploadedImage = new Image();
             uploadedImage.src = e.target.result;
             uploadedImage.onload = function() {
-                ctx.drawImage(uploadedImage, 50, 50, 100, 100); // Adjust position and size as needed
+                ctx.drawImage(uploadedImage, 805, 870, 300, 300); // Adjust position and size as needed
 
                 // Add text
                 ctx.font = '48px Arial';
