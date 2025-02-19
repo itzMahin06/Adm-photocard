@@ -46,15 +46,15 @@ ctx.fillStyle = "#433268";
  
 // Name (Larger & Bold)
 ctx.font = "bold 100px Kalpurush";  // Increased size
-ctx.fillText(name, 490, 1330);
+ctx.fillText(name, 410, 1330);
 
 // University Name (Medium Size)
 ctx.font = "bold 80px Kalpurush";  // Adjusted size
-ctx.fillText(university, 490, 1430);
+ctx.fillText(university, 600, 1430);
 
 // Rank (Smaller)
 ctx.font = "bold 78px Kalpurush";  // Adjusted size
-ctx.fillText("মেরিট পজিশনঃ " + rank, 490, 1530);
+ctx.fillText("মেরিট পজিশনঃ " + rank, 600, 1530);
 
                 // Show download button
                 document.getElementById("downloadBtn").style.display = "block";
