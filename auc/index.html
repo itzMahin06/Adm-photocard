@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Card Maker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body> 
+    <div class="container">
+        <h2> এইচএসসি ২৪ (কেবি কলেজ) </h2>
+        <input type="text" id="name" placeholder="তোমার নাম লিখো (অবশ্যই বাংলায়, সর্বোচ্চ ২০ ক্যারেক্টার)" maxlength="20">
+        <input type="text" id="university" placeholder="বিশ্ববিদ্যালয়ের নাম সম্পূর্ণ বাংলায় লিখুন" required>
+        <input type="text" id="rank" placeholder="মেরিট পজিশন (অবশ্যই বাংলায়)">
+        <input type="file" id="imageUpload" accept="image/png, image/jpeg">
+        <button onclick="generateCard()">তৈরি করুন</button>
+        <button id="downloadBtn" style="display:none;" onclick="downloadImage()">ডাউনলোড করুন</button>
+
+        <div class="preview">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+    <script src="auc/script.js"></script>
+</body>
+</html>
